@@ -1,5 +1,6 @@
 package atm;
 
+import exceptions.NotesUnavailableForAmountException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,13 +21,13 @@ public class ATM {
 
     public int[] withdrawCash(int amount) {
         if (amount % 10 != 0) {
-            return null;
+            throw new NotesUnavailableForAmountException("This ATM can only supply 20 and 50 notes. Add correct amount.");
         }
         if (amount > totalBalance) {
-            return null;
+            throw new NotesUnavailableForAmountException("ATM's balance is too low for requested amount.");
         }
         if (amount < 20) {
-            return null;
+            throw new NotesUnavailableForAmountException("Amount requested is too low.");
         }
         int[] result = withdrawRecursive(0, 0, amount, max50s);
         if (result != null) {
@@ -59,14 +60,12 @@ public class ATM {
         }
 
         int remainingAmount = amount - currentTotal;
-        log.info("remaining amount: " + remainingAmount);
 
         if (remainingAmount > 0 && num50s > 0) {
             log.info("decreasing 50s");
             return withdrawRecursive(num50s - 1, num20s, amount, num50s - 1);
         }
-
-        return null;
+        throw new NotesUnavailableForAmountException("This ATM can only supply 50 and 20 notes.");
     }
 
 
