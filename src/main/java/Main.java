@@ -8,7 +8,7 @@ public class Main {
         ATM atm = new ATM(3, 8);
         System.out.println("No of notes withdrawn: " + Arrays.toString(atm.withdrawCash(70)));
 
-        System.out.println("No of 50s: " + atm.getTotal50s());
-        System.out.println("No of 20s: " + atm.getTotal20s());
+        System.out.println("No of 50s: " + atm.getMax50s());
+        System.out.println("No of 20s: " + atm.getMax20s());
     }
 }
