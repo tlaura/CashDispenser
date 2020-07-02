@@ -25,6 +25,51 @@ public class ATM {
         if (amount < 20) {
             return null;
         }
+        int[] result = withdrawRecursive(0, 0, amount, total50s, total20s);
+        if (result != null) {
+            total50s = total50s - result[0];
+            total20s = total20s - result[1];
+        }
+        return result;
+    }
+
+
+    public int[] withdrawRecursive(int num50s, int num20s, int amount, int total50s, int total20s) {
+        if(amount == 0) {
+            return new int[] {num50s, num20s};
+        }
+
+        int currentTotal = num50s * 50 + num20s * 20;
+        if(currentTotal == amount) {
+            return new int[]{num50s, num20s};
+        }
+
+//        check if we can take 50s, if yes, recurse
+        if(num50s < total50s) {
+            if(amount - currentTotal >= 50) {
+                log.info("adding 50");
+                return withdrawRecursive(num50s + 1, num20s, amount, total50s, total20s);
+            }
+            log.info("maxing 20");
+            return withdrawRecursive(num50s, num20s, amount, num50s, total20s);
+        }
+
+        if(num20s < total20s) {
+            if(amount - currentTotal >= 20) {
+                log.info("adding 20");
+                return withdrawRecursive(num50s, num20s + 1, amount, total50s, total20s);
+            }
+            log.info("maxing 20s");
+            return withdrawRecursive(num50s, num20s, amount, total50s, num20s);
+        }
+
+        int remainingAmount = amount - currentTotal;
+        log.info("remaining amount: " + remainingAmount);
+
+        if(remainingAmount > 0 && num50s > 0) {
+            log.info("decreasing 50s");
+            return withdrawRecursive(num50s - 1, num20s, amount, num50s - 1, this.total20s);
+        }
         return null;
     }
 
