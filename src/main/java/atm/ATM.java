@@ -29,6 +29,7 @@ public class ATM {
         if (result != null) {
             total50s = total50s - result[0];
             total20s = total20s - result[1];
+            totalBalance = total50s * 50 + total20s * 20;
         }
         return result;
     }
