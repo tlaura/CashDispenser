@@ -30,7 +30,7 @@ public class MainTest {
     }
 
     @Test
-    public void testAmount_70_50Note() {
+    public void testAmount_70() {
         int[] result70 = atm.withdrawCash(70);
         Assertions.assertEquals(1, result70[0]);
         Assertions.assertEquals(1, result70[1]);
@@ -45,12 +45,66 @@ public class MainTest {
     @Test
     public void testAmount_100() {
         int[] result100 = atm.withdrawCash(100);
-        Assertions.assertEquals(4, result100[1]);
+        Assertions.assertEquals(2, result100[0]);
+    }
+
+    @Test
+    public void testAmount_150() {
+        int[] result150 = atm.withdrawCash(150);
+        Assertions.assertEquals(3, result150[0]);
+    }
+
+    @Test
+    public void testAmount_60() {
+        int[] result60 = atm.withdrawCash(60);
+        Assertions.assertEquals(3, result60[1]);
+    }
+
+    @Test
+    public void testAmount_110() {
+        int[] result110 = atm.withdrawCash(110);
+        Assertions.assertEquals(1, result110[0]);
+        Assertions.assertEquals(3, result110[1]);
     }
 
     @Test
     public void testAmount_200() {
         int[] result200 = atm.withdrawCash(200);
         Assertions.assertEquals(5, result200[1]);
+    }
+
+    @Test
+    public void testAvailable50s_OnAmount200() {
+        atm.withdrawCash(200);
+        int avail50s = atm.getTotal50s();
+        Assertions.assertEquals(1, avail50s);
+    }
+
+    @Test
+    public void testAvailable50s_OnAmount110() {
+        atm.withdrawCash(110);
+        int avail50s = atm.getTotal50s();
+        Assertions.assertEquals(2, avail50s);
+    }
+
+    @Test
+    public void testAvailable50s_OnAmount150() {
+        atm.withdrawCash(150);
+        int avail50s = atm.getTotal50s();
+        Assertions.assertEquals(0, avail50s);
+    }
+
+    @Test
+    public void testAvailable20s_OnAmount80() {
+        atm.withdrawCash(80);
+        int avail20s = atm.getTotal20s();
+        Assertions.assertEquals(4, avail20s);
+    }
+
+    @Test
+    public void testAvailable20s_OnAmount200() {
+        atm.withdrawCash(200);
+        int avail20s = atm.getTotal20s();
+        Assertions.assertEquals(3, avail20s);
     }
 }
