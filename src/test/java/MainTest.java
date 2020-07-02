@@ -3,8 +3,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 public class MainTest {
     private ATM atm;
 
@@ -32,14 +30,9 @@ public class MainTest {
     }
 
     @Test
-    public void testAmount_70() {
+    public void testAmount_70_50Note() {
         int[] result70 = atm.withdrawCash(70);
         Assertions.assertEquals(1, result70[0]);
-    }
-
-    @Test
-    public void testAmount_70_20NoteBack() {
-        int[] result70 = atm.withdrawCash(70);
         Assertions.assertEquals(1, result70[1]);
     }
 
@@ -49,31 +42,15 @@ public class MainTest {
         Assertions.assertEquals(4, result80[1]);
     }
 
-//    @Test
-//    public void testAmount_100() {
-//
-//    }
-//
-//    @Test
-//    public void testAmount_150() {
-//
-//    }
-
     @Test
-    public void testAmount_60() {
-        int[] result60 = atm.withdrawCash(60);
-        System.out.println(Arrays.toString(result60));
-        Assertions.assertEquals(1, result60[0]);
-        Assertions.assertEquals(0, result60[1]);
+    public void testAmount_100() {
+        int[] result100 = atm.withdrawCash(100);
+        Assertions.assertEquals(4, result100[1]);
     }
 
-//    @Test
-//    public void testAmount_110() {
-//
-//    }
-//
-//    @Test
-//    public void testAmount_200() {
-//
-//    }
+    @Test
+    public void testAmount_200() {
+        int[] result200 = atm.withdrawCash(200);
+        Assertions.assertEquals(5, result200[1]);
+    }
 }
