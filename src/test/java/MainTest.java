@@ -1,4 +1,5 @@
 import atm.ATM;
+import atm.ATMListener;
 import exceptions.NotesUnavailableForAmountException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -128,5 +129,20 @@ public class MainTest {
         Assertions.assertThrows(NotesUnavailableForAmountException.class, () -> {
             atm.withdrawCash(10);
         });
+    }
+
+    @Test
+    public void testTopup_50() {
+        atm.addPropertyChangeListener(new ATMListener(atm, 3, 8));
+        atm.withdrawCash(150);
+        Assertions.assertEquals(3, atm.getMax50s());
+    }
+
+    @Test
+    public void testTopup_20() {
+        ATM atm = new ATM(3,4);
+        atm.addPropertyChangeListener(new ATMListener(atm, 3, 8));
+        atm.withdrawCash(80);
+        Assertions.assertEquals(8, atm.getMax20s());
     }
 }
