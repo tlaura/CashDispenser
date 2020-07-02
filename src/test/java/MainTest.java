@@ -1,4 +1,5 @@
 import atm.ATM;
+import exceptions.NotesUnavailableForAmountException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -113,5 +114,19 @@ public class MainTest {
         atm.withdrawCash(200);
         int balance = atm.getTotalBalance();
         Assertions.assertEquals(110, balance);
+    }
+
+    @Test
+    public void testIncorrectAmount_30() {
+        Assertions.assertThrows(NotesUnavailableForAmountException.class, () -> {
+            atm.withdrawCash(30);
+        });
+    }
+
+    @Test
+    public void testIncorrectAmount_10() {
+        Assertions.assertThrows(NotesUnavailableForAmountException.class, () -> {
+            atm.withdrawCash(10);
+        });
     }
 }
