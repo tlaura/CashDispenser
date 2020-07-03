@@ -2,11 +2,13 @@ package atm;
 
 import exceptions.NotesUnavailableForAmountException;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 @Getter
+@Slf4j
 public class ATM {
 
     private int max50s;
@@ -23,7 +25,6 @@ public class ATM {
         this.totalBalance = (numberOf20s * NOTE_20) + (numberOf50s * NOTE_50);
         support = new PropertyChangeSupport(this);
     }
-
 
     public int[] withdrawCash(int amount) {
         if (amount % 10 != 0) {
@@ -44,9 +45,9 @@ public class ATM {
         return result;
     }
 
-
     public int[] withdrawRecursive(int num50s, int num20s, int amount, int total50s) {
         int currentTotal = num50s * NOTE_50 + num20s * NOTE_20;
+
         if (currentTotal == amount) {
             return new int[]{num50s, num20s};
         }

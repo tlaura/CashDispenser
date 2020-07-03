@@ -16,7 +16,6 @@ public class UI {
         }
     }
 
-
     public void printWithdrawal(String commandPrompt, int notes) {
         System.out.println(commandPrompt + notes);
     }

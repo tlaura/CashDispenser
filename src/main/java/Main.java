@@ -1,6 +1,8 @@
 import atm.ATM;
 import atm.ATMListener;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Main {
 
     public static void main(String[] args) {
@@ -17,5 +19,8 @@ public class Main {
         int[] notes = atm.withdrawCash(amount);
         ui.printWithdrawal("Number of 50 notes withdrawn: ", notes[0]);
         ui.printWithdrawal("Number of 20 notes withdrawn: ", notes[1]);
+
+        log.info("Available 50s in the ATM: " + atm.getMax50s());
+        log.info("Available 20s in the ATM: " + atm.getMax20s());
     }
 }

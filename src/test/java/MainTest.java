@@ -76,42 +76,42 @@ public class MainTest {
     }
 
     @Test
-    public void testAvailable50s_OnWithdraw200() {
+    public void testAvailable50s_onWithdraw200() {
         atm.withdrawCash(200);
         int avail50s = atm.getMax50s();
         Assertions.assertEquals(1, avail50s);
     }
 
     @Test
-    public void testAvailable50s_OnWithdraw110() {
+    public void testAvailable50s_onWithdraw110() {
         atm.withdrawCash(110);
         int avail50s = atm.getMax50s();
         Assertions.assertEquals(2, avail50s);
     }
 
     @Test
-    public void testAvailable50s_OnWithdraw150() {
+    public void testAvailable50s_onWithdraw150() {
         atm.withdrawCash(150);
         int avail50s = atm.getMax50s();
         Assertions.assertEquals(0, avail50s);
     }
 
     @Test
-    public void testAvailable20s_OnWithdraw80() {
+    public void testAvailable20s_onWithdraw80() {
         atm.withdrawCash(80);
         int avail20s = atm.getMax20s();
         Assertions.assertEquals(4, avail20s);
     }
 
     @Test
-    public void testAvailable20s_OnWithdraw200() {
+    public void testAvailable20s_onWithdraw200() {
         atm.withdrawCash(200);
         int avail20s = atm.getMax20s();
         Assertions.assertEquals(3, avail20s);
     }
 
     @Test
-    public void testTotalBalance_OnWithdraw200() {
+    public void testTotalBalance_onWithdraw200() {
         atm.withdrawCash(200);
         int balance = atm.getTotalBalance();
         Assertions.assertEquals(110, balance);
