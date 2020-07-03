@@ -2,12 +2,10 @@ package atm;
 
 import exceptions.NotesUnavailableForAmountException;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-@Slf4j
 @Getter
 public class ATM {
 
@@ -74,10 +72,6 @@ public class ATM {
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener pcl) {
-        support.removePropertyChangeListener(pcl);
     }
 
     public void setMax50s(int max50s) {
